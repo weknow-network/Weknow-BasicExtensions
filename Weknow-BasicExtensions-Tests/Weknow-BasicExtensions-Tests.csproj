@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <RootNamespace>Weknow_BasicExtensions_Tests</RootNamespace>
+
+    <IsPackable>false</IsPackable>
+
+    <Copyright>Weknow Network ©</Copyright>
+
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+
+    <PackageProjectUrl>https://github.com/weknow-network/weknow-neo4j-extensions</PackageProjectUrl>
+
+    <RepositoryUrl>https://github.com/weknow-network/weknow-neo4j-extensions</RepositoryUrl>
+
+    <RepositoryType>GitHub</RepositoryType>
+
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+
+    <PackageIconUrl></PackageIconUrl>
+
+    <Authors>Weknow Network</Authors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
+    <PackageReference Include="xunit" Version="2.4.0" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
+    <PackageReference Include="coverlet.collector" Version="1.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Weknow-BasicExtensions\Weknow-BasicExtensions.csproj" />
+  </ItemGroup>
+
+</Project>
