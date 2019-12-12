@@ -5,6 +5,56 @@ namespace System
 {
     public static class StringExtensions
     {
+        #region ToCamelCase
+
+        /// <summary>
+        /// Converts to camelCase.
+        /// </summary>
+        /// <param name="text">The text.</param>
+        /// <param name="seperator">The seperator.</param>
+        /// <returns></returns>
+        public static string ToCamelCase(this string text)
+        {
+            // TODO: use slice to minimize allocation
+
+            if (string.IsNullOrEmpty(text))
+                return string.Empty;
+
+
+            return $"{Char.ToLower(text[0])}{text[1..]}";
+        }
+
+        #endregion // ToCamelCase
+
+        #region ToPascalCase
+
+        /// <summary>
+        /// Converts to PascalCase.
+        /// </summary>
+        /// <param name="text">The text.</param>
+        /// <param name="seperator">The seperator.</param>
+        /// <returns></returns>
+        public static string ToPascalCase(this string text)
+        {
+            // TODO: use slice to minimize allocation
+
+            if (string.IsNullOrEmpty(text))
+                return string.Empty;
+
+
+            return $"{Char.ToUpper(text[0])}{text[1..]}";
+        }
+
+        #endregion // ToPascalCase
+
+        #region ToSCREAMING
+
+        /// <summary>
+        /// Converts to SCREAMING_CASE.
+        /// </summary>
+        /// <param name="text">The text.</param>
+        /// <param name="seperator">The seperator.</param>
+        /// <returns></returns>
         public static string ToSCREAMING(this string text, char seperator = '_')
         {
             // TODO: use slice to minimize allocation
@@ -40,7 +90,7 @@ namespace System
                            return (result, current);
                        return ($"{result}{CURRENT}", current);
                    }
-                   if ((char.IsLower(last) || !char.IsLetter(last) ) && char.IsUpper(current))
+                   if ((char.IsLower(last) || !char.IsLetter(last)) && char.IsUpper(current))
                        return ($"{result}{seperator}{CURRENT}", current);
                    return ($"{result}{CURRENT}", current);
                });
@@ -54,6 +104,8 @@ namespace System
             //    });
 
             return aggregate.Result;
-        }
+        } 
+
+        #endregion // ToSCREAMING
     }
 }
