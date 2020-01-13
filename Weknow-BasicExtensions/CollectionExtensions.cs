@@ -6,6 +6,21 @@ namespace System.Collections
 {
     public static class CollectionExtensions
     {
+        #region AsYield
+
+        /// <summary>
+        /// Converts to yield (IEnumerable) with single item.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="item">The item.</param>
+        /// <returns></returns>
+        public static IEnumerable<T> AsYield<T>(this T item)
+        {
+            yield return item;
+        }
+
+        #endregion // AsYield
+
         #region ToYield
 
         /// <summary>
