@@ -26,6 +26,8 @@ namespace System
 
         #endregion // Value
 
+        #region Context
+
         /// <summary>
         /// Gets or sets the context value.
         /// You can shorten the syntax by: 
@@ -33,6 +35,11 @@ namespace System
         /// Then you can use Context directly.
         /// </summary>
         public static ExecutionContext Context { get => _default.Value; set => _default.Value = value; }
+
+        #endregion // Context
+
+        #region ExecCtx
+
         /// <summary>
         /// Gets or sets the context value.
         /// You can shorten the syntax by: 
@@ -43,6 +50,8 @@ namespace System
         /// ExecCtx may be better naming when having 'using static System.ExecutionContext'
         /// </summary>
         public static ExecutionContext ExecCtx { get => _default.Value; set => _default.Value = value; }
+
+        #endregion // ExecCtx
 
         #region Set // static
 
@@ -244,8 +253,26 @@ namespace System
             processName = ProcessName;
             containerName = ContainerName;
             containerImage = ContainerImage;
-        } 
+        }
         #endregion // Deconstruct
-    }
 
+        #region ToString
+
+        /// <summary>
+        /// Converts to string.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="System.String" /> that represents this instance.
+        /// </returns>
+        public override string ToString()
+        {
+            return $@"
+    Environment: {DeployEnvironment}, Tenant: {Tenant}, 
+    ProcessName: {ProcessName}, 
+    Container: Name={ContainerName}, Image={ContainerImage}
+";
+        } 
+
+        #endregion // ToString
+    }
 }
