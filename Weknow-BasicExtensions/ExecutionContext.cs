@@ -21,12 +21,28 @@ namespace System
         /// <summary>
         /// Gets or sets the context value.
         /// </summary>
-        /// <value>
-        /// The value.
-        /// </value>
-        public static ExecutionContext Value { get => _default.Value; set => _default.Value = value; }
+        [Obsolete("Use Context or ExecCtx instead of Value", false)]
+        public static ExecutionContext Value { get => Context; set => Context = value; }
 
         #endregion // Value
+
+        /// <summary>
+        /// Gets or sets the context value.
+        /// You can shorten the syntax by: 
+        /// using static System.ExecutionContext;
+        /// Then you can use Context directly.
+        /// </summary>
+        public static ExecutionContext Context { get => _default.Value; set => _default.Value = value; }
+        /// <summary>
+        /// Gets or sets the context value.
+        /// You can shorten the syntax by: 
+        /// using static System.ExecutionContext;
+        /// Then you can use ExecCtx directly.
+        /// 
+        /// Context and ExecCtx are the same, it's only matters of naming preference.
+        /// ExecCtx may be better naming when having 'using static System.ExecutionContext'
+        /// </summary>
+        public static ExecutionContext ExecCtx { get => _default.Value; set => _default.Value = value; }
 
         #region Set // static
 
