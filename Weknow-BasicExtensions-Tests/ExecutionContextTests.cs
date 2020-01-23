@@ -2,6 +2,7 @@ using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Xunit;
+using static System.ExecutionContext;
 
 namespace Weknow_BasicExtensions_Tests
 {
@@ -127,13 +128,13 @@ namespace Weknow_BasicExtensions_Tests
         private async Task<ExecutionContext> Step3aAsync()
         {
             await Task.Delay(2).ConfigureAwait(false);
-            return ExecutionContext.Value;
+            return ExecutionContext.Context;
         }
 
         private async Task<ExecutionContext> Step3bAsync()
         {
             await Task.Delay(2).ConfigureAwait(false);
-            return ExecutionContext.Value;
+            return ExecCtx;
         }
     }
 }

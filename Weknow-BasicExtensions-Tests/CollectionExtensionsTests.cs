@@ -7,7 +7,7 @@ namespace Weknow_BasicExtensions_Tests
     public class CollectionExtensionsTests
     {
         [Fact]
-        public async void ToYield_Test()
+        public void ToYield_Test()
         {
             int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
             var r1 = 1.ToYield(2, arr[2..]);
