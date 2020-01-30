@@ -273,9 +273,25 @@ namespace System
                 [nameof(ContainerImage)] = ContainerImage,
                 [nameof(ContainerName)] = ContainerName,
             };
-        } 
+        }
 
         #endregion // ToDictionary
+
+        #region Cast Overloads
+
+        /// <summary>
+        /// Performs an implicit conversion from <see cref="ExecutionContext"/> to <see cref="IDictionary{System.String, System.Object}"/>.
+        /// </summary>
+        /// <param name="ctx">The CTX.</param>
+        /// <returns>
+        /// The result of the conversion.
+        /// </returns>
+        public static implicit operator Dictionary<string, object>(ExecutionContext ctx)
+        {
+            return (Dictionary<string, object>)ctx.ToDictionary();
+        }
+
+        #endregion // Cast Overloads
 
         #region ToString
 
