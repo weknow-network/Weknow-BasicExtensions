@@ -256,6 +256,27 @@ namespace System
         }
         #endregion // Deconstruct
 
+        #region ToDictionary
+
+        /// <summary>
+        /// Converts to dictionary.
+        /// </summary>
+        /// <returns></returns>
+        public IDictionary<string, object> ToDictionary()
+        {
+            return new Dictionary<string, object>
+            {
+                [nameof(DeployEnvironment)] = DeployEnvironment,
+                [nameof(Tenant)] = Tenant,
+                [nameof(CorrelationToken)] = CorrelationToken,
+                [nameof(ProcessName)] = ProcessName,
+                [nameof(ContainerImage)] = ContainerImage,
+                [nameof(ContainerName)] = ContainerName,
+            };
+        } 
+
+        #endregion // ToDictionary
+
         #region ToString
 
         /// <summary>
