@@ -12,7 +12,7 @@ namespace System
     /// Use call context (rather passing parameter through the call stack)
     /// for tracing environmental data (in multi-tenant environment).    /// 
     /// </summary>
-    [Obsolete("We considering context's property as to diverse, therefore not fit well into a common library. this api will be remove in the next version. please copy the code (from GitHub) in to your local project if you're using it", false)]
+    [Obsolete("Deprecating  ExecutionContext because it's to diverse fitting broad companies needs. This API will be removed on the next version. Please copy the code (from GitHub) into your local project if you're using it", false)]
     public class ExecutionContext
     {
         private static readonly AsyncLocal<ExecutionContext> _default = new AsyncLocal<ExecutionContext>();
