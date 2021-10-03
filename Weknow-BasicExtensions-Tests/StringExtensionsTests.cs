@@ -1,10 +1,23 @@
 using System;
+
 using Xunit;
+using Xunit.Abstractions;
 
 namespace Weknow_BasicExtensions_Tests
 {
     public class StringExtensionsTests
     {
+        private readonly ITestOutputHelper _outputHelper;
+
+        #region Ctor
+
+        public StringExtensionsTests(ITestOutputHelper outputHelper)
+        {
+            _outputHelper = outputHelper;
+        }
+
+        #endregion Ctor
+
         #region String_ToSCREAMING_Test_Succeed
 
         [Theory]
@@ -28,10 +41,42 @@ namespace Weknow_BasicExtensions_Tests
         public void String_ToSCREAMING_Test_Succeed(string input, string expected)
         {
             string result = input.ToSCREAMING();
+            _outputHelper.WriteLine($"'{input}' = '{result}'");
             Assert.Equal(expected, result);
         }
 
         #endregion // String_ToSCREAMING_Test_Succeed
+
+        #region String_ToDash_Test_Succeed
+
+        [Theory]
+        [InlineData("BnayaEshet", "bnaya-eshet")]
+        [InlineData("Bnaya_Eshet", "bnaya-eshet")]
+        [InlineData("Bnaya_ESHET", "bnaya-eshet")]
+        [InlineData("Bnaya1234Eshet", "bnaya1234-eshet")]
+        [InlineData("Bnaya Eshet", "bnaya-eshet")]
+        [InlineData(" Bnaya Eshet", "bnaya-eshet")]
+        [InlineData("Bnaya Eshet ", "bnaya-eshet")]
+        [InlineData("Bnaya  Eshet", "bnaya-eshet")]
+        [InlineData("Bnay$a  Eshet", "bnay-a-eshet")]
+        [InlineData("Bnaya$  Eshet", "bnaya-eshet")]
+        [InlineData("Bnaya$Eshet", "bnaya-eshet")]
+        [InlineData("Bnaya--Eshet", "bnaya-eshet")]
+        [InlineData("Bnaya- -Eshet", "bnaya-eshet")]
+        [InlineData("Bnaya__Eshet", "bnaya-eshet")]
+        [InlineData("Bnaya_ _Eshet", "bnaya-eshet")]
+        [InlineData("Bnaya _ _Eshet", "bnaya-eshet")]
+        [InlineData("Bnaya_ _ Eshet", "bnaya-eshet")]
+        [InlineData("", "")]
+        [InlineData(null, "")]
+        public void String_ToDash_Test_Succeed(string input, string expected)
+        {
+            string result = input.ToDash();
+            _outputHelper.WriteLine($"'{input}' = '{result}'");
+            Assert.Equal(expected, result);
+        }
+
+        #endregion // String_ToDash_Test_Succeed
 
         #region String_ToPascalCase_Test_Succeed
 
@@ -44,6 +89,7 @@ namespace Weknow_BasicExtensions_Tests
         public void String_ToPascalCase_Test_Succeed(string input, string expected)
         {
             string result = input.ToPascalCase();
+            _outputHelper.WriteLine($"'{input}' = '{result}'");
             Assert.Equal(expected, result);
         }
 
@@ -60,6 +106,7 @@ namespace Weknow_BasicExtensions_Tests
         public void String_ToCamelCase_Test_Succeed(string input, string expected)
         {
             string result = input.ToCamelCase();
+            _outputHelper.WriteLine($"'{input}' = '{result}'");
             Assert.Equal(expected, result);
         }
 

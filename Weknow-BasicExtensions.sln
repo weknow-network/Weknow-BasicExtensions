@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29509.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weknow-BasicExtensions", "Weknow-BasicExtensions\Weknow-BasicExtensions.csproj", "{680958A4-5C35-4229-95B7-7A0133D61BC0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Weknow-BasicExtensions", "Weknow-BasicExtensions\Weknow-BasicExtensions.csproj", "{680958A4-5C35-4229-95B7-7A0133D61BC0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weknow-BasicExtensions-Tests", "Weknow-BasicExtensions-Tests\Weknow-BasicExtensions-Tests.csproj", "{0D999789-D1B2-4CE1-982A-C2303FE94DFA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Weknow-BasicExtensions-Tests", "Weknow-BasicExtensions-Tests\Weknow-BasicExtensions-Tests.csproj", "{0D999789-D1B2-4CE1-982A-C2303FE94DFA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Weknow.Extensions.DependencyInjection", "Weknow.Extensions.DependencyInjection\Weknow.Extensions.DependencyInjection.csproj", "{393AAD56-3407-4B27-8EDE-830BE23214F4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{0D999789-D1B2-4CE1-982A-C2303FE94DFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D999789-D1B2-4CE1-982A-C2303FE94DFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D999789-D1B2-4CE1-982A-C2303FE94DFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{393AAD56-3407-4B27-8EDE-830BE23214F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{393AAD56-3407-4B27-8EDE-830BE23214F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{393AAD56-3407-4B27-8EDE-830BE23214F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{393AAD56-3407-4B27-8EDE-830BE23214F4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

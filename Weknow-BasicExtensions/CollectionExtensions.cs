@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 
 namespace System.Collections
 {
@@ -24,14 +22,15 @@ namespace System.Collections
         #region ToYield
 
         /// <summary>
-        /// Concatenates non-sequential data with a sequences.
-        /// Extend IEnumerable<T>.Concat which in this case has to allocate collection for the Concatenation.
+        /// <![CDATA[ Concatenates non-sequential data with a sequences.
+        /// Extend IEnumerable<T>.Concat which in this case has to allocate collection for the Concatenation.]]>
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="item1"/>
-        /// <paramref name="item2"/>
+        /// <param name="item1">The item1.</param>
+        /// <param name="item2">The item2.</param>
         /// <param name="items">The items.</param>
         /// <returns></returns>
+        /// <paramref name="item2" />
         /// <example>
         /// Instead of :
         /// new [] {1}.Concat(new[]{2, 3}))
@@ -49,8 +48,8 @@ namespace System.Collections
         }
 
         /// <summary>
-        /// Concatenates non-sequential data with a sequences.
-        /// Extend IEnumerable<T>.Concat which in this case has to allocate collection for the Concatenation.
+        ///  <![CDATA[Concatenates non-sequential data with a sequences.
+        /// Extend IEnumerable<T>.Concat which in this case has to allocate collection for the Concatenation.]]>
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="item">The item.</param>
@@ -72,14 +71,15 @@ namespace System.Collections
         }
 
         /// <summary>
-        /// Concatenates non-sequential data with a sequences.
-        /// Extend IEnumerable<T>.Concat which in this case has to allocate collection for the Concatenation.
+        /// <![CDATA[Concatenates non-sequential data with a sequences.
+        /// Extend IEnumerable<T>.Concat which in this case has to allocate collection for the Concatenation.]]>
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="item1"/>
-        /// <paramref name="item2"/>
+        /// <param name="item1">The item1.</param>
+        /// <param name="item2">The item2.</param>
         /// <param name="items">The items.</param>
         /// <returns></returns>
+        /// <paramref name="item2" />
         /// <example>
         /// Instead of :
         /// new [] {1, 2}.Concat(Enumerable.Range(3,10))
@@ -97,14 +97,16 @@ namespace System.Collections
         }
 
         /// <summary>
-        /// Concatenates non-sequential data with a sequences.
-        /// Extend IEnumerable<T>.Concat which in this case has to allocate collection for the Concatenation.
+        /// <![CDATA[Concatenates non-sequential data with a sequences.
+        /// Extend IEnumerable<T>.Concat which in this case has to allocate collection for the Concatenation.]]>
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="item1"/>
-        /// <paramref name="item2"/>
+        /// <param name="item1">The item1.</param>
+        /// <param name="item2">The item2.</param>
+        /// <param name="item3">The item3.</param>
         /// <param name="items">The items.</param>
         /// <returns></returns>
+        /// <paramref name="item2" />
         /// <example>
         /// Instead of :
         /// new [] {1, 2, 3}.Concat(Enumerable.Range(4,10))
@@ -123,14 +125,17 @@ namespace System.Collections
         }
 
         /// <summary>
-        /// Concatenates non-sequential data with a sequences.
-        /// Extend IEnumerable<T>.Concat which in this case has to allocate collection for the Concatenation.
+        /// <![CDATA[Concatenates non-sequential data with a sequences.
+        /// Extend IEnumerable<T>.Concat which in this case has to allocate collection for the Concatenation.]]>
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="item1"/>
-        /// <paramref name="item2"/>
+        /// <param name="item1">The item1.</param>
+        /// <param name="item2">The item2.</param>
+        /// <param name="item3">The item3.</param>
+        /// <param name="item4">The item4.</param>
         /// <param name="items">The items.</param>
         /// <returns></returns>
+        /// <paramref name="item2" />
         /// <example>
         /// Instead of :
         /// new [] {1, 2, 3, 4}.Concat(Enumerable.Range(5,10))
