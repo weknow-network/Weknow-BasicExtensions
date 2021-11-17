@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace System.Collections
+﻿namespace System.Collections
 {
     public static class CollectionExtensions
     {
@@ -29,7 +27,7 @@ namespace System.Collections
         /// <param name="item1">The item1.</param>
         /// <param name="items">The items.</param>
         /// <returns></returns>
-        public static IEnumerable<T> YieldAppend<T>(this IEnumerable<T> source, T item1, params T[] items)
+        public static IEnumerable<T> ToYield<T>(this IEnumerable<T> source, T item1, params T[] items)
         {
             foreach (var element in source)
             {
@@ -40,48 +38,6 @@ namespace System.Collections
             {
                 yield return element;
             }
-        }
-
-        /// <summary>
-        /// Append elements to enumerable.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="items">The items.</param>
-        /// <param name="item1">The item1.</param>
-        /// <param name="item2">The item2.</param>
-        /// <param name="item3">The item3.</param>
-        /// <returns></returns>
-        public static IEnumerable<T> ToYield<T>(this IEnumerable<T> items, T item1, T item2, T item3)
-        {
-            foreach (var element in items)
-            {
-                yield return element;
-            }
-            yield return item1;
-            yield return item2;
-            yield return item3;
-        }
-
-        /// <summary>
-        /// Append elements to enumerable.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="items">The items.</param>
-        /// <param name="item1">The item1.</param>
-        /// <param name="item2">The item2.</param>
-        /// <param name="item3">The item3.</param>
-        /// <param name="item4">The item4.</param>
-        /// <returns></returns>
-        public static IEnumerable<T> ToYield<T>(this IEnumerable<T> items, T item1, T item2, T item3, T item4)
-        {
-            foreach (var element in items)
-            {
-                yield return element;
-            }
-            yield return item1;
-            yield return item2;
-            yield return item3;
-            yield return item4;
         }
 
 

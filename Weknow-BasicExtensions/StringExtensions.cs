@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-namespace System
+﻿namespace System
 {
     public static class StringExtensions
     {
