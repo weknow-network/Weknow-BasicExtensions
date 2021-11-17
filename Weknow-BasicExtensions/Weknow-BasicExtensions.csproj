@@ -1,37 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
-    <LangVersion>9.0</LangVersion>
-    <Nullable>enable</Nullable>
     <RootNamespace>System</RootNamespace>
-
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageIconUrl></PackageIconUrl>
-    <PackageProjectUrl>https://www.nuget.org/packages/Weknow-BasicExtensions/</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/weknow-network/Weknow-BasicExtensions</RepositoryUrl>
-    <RepositoryType>GitHub</RepositoryType>
-
-    <Copyright>Weknow Network ©</Copyright>
-    <Authors>Weknow Network</Authors>
-    <Company>Weknow Network</Company>
   </PropertyGroup>
 
-  <PropertyGroup>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <NoWarn>$(NoWarn);1591</NoWarn>
-    <Version>1.0.18</Version>
-    <PackageIcon>icon.png</PackageIcon>
-    <PackageTags>Weknow, .NET, Core, Extensions</PackageTags>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <AssemblyVersion>1.0.19.0</AssemblyVersion>
-    <FileVersion>1.0.19.0</FileVersion>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <None Include="icon.png">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-  </ItemGroup>
 </Project>

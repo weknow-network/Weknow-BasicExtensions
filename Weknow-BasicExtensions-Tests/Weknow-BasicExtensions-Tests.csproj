@@ -5,22 +5,7 @@
     <RootNamespace>Weknow_BasicExtensions_Tests</RootNamespace>
 
     <IsPackable>false</IsPackable>
-
-    <Copyright>Weknow Network ©</Copyright>
-
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-
-    <PackageProjectUrl>https://www.nuget.org/packages/Weknow-BasicExtensions/</PackageProjectUrl>
-
-    <RepositoryUrl>https://github.com/weknow-network/Weknow-BasicExtensions</RepositoryUrl>
-
-    <RepositoryType>GitHub</RepositoryType>
-
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-
-    <PackageIconUrl></PackageIconUrl>
-
-    <Authors>Weknow Network</Authors>
   </PropertyGroup>
 
   <ItemGroup>
