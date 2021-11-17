@@ -23,7 +23,6 @@
         /// <typeparam name="T"></typeparam>
         /// <param name="item">The item.</param>
         /// <returns></returns>
-        [Obsolete("Use ToYield()", false)]
         public static IEnumerable<T> ToYield<T>(this T item)
         {
             yield return item;
