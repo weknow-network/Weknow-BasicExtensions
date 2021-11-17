@@ -10,14 +10,24 @@
         /// <typeparam name="T"></typeparam>
         /// <param name="item">The item.</param>
         /// <returns></returns>
-        public static IEnumerable<T> AsYield<T>(this T item)
-        {
-            yield return item;
-        }
+        [Obsolete("Use ToYield()", false)]
+        public static IEnumerable<T> AsYield<T>(this T item) => item.ToYield();
 
         #endregion // AsYield
 
         #region ToYield
+
+        /// <summary>
+        /// Converts to yield (IEnumerable) with single item.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="item">The item.</param>
+        /// <returns></returns>
+        [Obsolete("Use ToYield()", false)]
+        public static IEnumerable<T> ToYield<T>(this T item)
+        {
+            yield return item;
+        }
 
         /// <summary>
         /// Append elements to enumerable.
