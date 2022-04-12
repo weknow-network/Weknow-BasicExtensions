@@ -2,6 +2,11 @@
 [![Build & Deploy NuGet](https://github.com/weknow-network/Weknow-BasicExtensions/actions/workflows/Deploy.yml/badge.svg)](https://github.com/weknow-network/Weknow-BasicExtensions/actions/workflows/Deploy.yml)
 [![NuGet](https://img.shields.io/nuget/v/Weknow-BasicExtensions.svg)](https://www.nuget.org/packages/Weknow-BasicExtensions/) 
 
+Set of basic extensions.
+You may like to check other repository like:
+- [Json extenssions](https://github.com/weknow-network/Weknow-Json-Extensions)
+- [Async extensions](https://github.com/weknow-network/Bnaya.CSharp.AsyncExtensions)
+- [DI extensions](https://github.com/weknow-network/Weknow-DI-Extensions)
 
 ## String Extensions
 - [ToCamelCase](#ToCamelCase) 
