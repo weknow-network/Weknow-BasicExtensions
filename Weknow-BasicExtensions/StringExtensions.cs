@@ -1,7 +1,11 @@
-﻿namespace System
+﻿using System.Text.RegularExpressions;
+
+namespace System
 {
     public static class StringExtensions
     {
+        private static readonly Regex IGNORED = new Regex("[^a-zA-Z0-9]");
+
         #region ToCamelCase
 
         /// <summary>
@@ -11,13 +15,36 @@
         /// <returns></returns>
         public static string ToCamelCase(this string text)
         {
-            // TODO: use slice to minimize allocation
-
             if (string.IsNullOrEmpty(text))
                 return string.Empty;
 
 
-            return $"{Char.ToLower(text[0])}{text[1..]}";
+            string[] parts = IGNORED.Split(text);
+            if (parts.Length == 1)
+            {
+                return ToCamelSimple(text);
+            }
+
+            string result = string.Join("", parts.Select((m, i) => i == 0 ? ToCamelSimple(m) : ToPascalSimple(m)));
+            return result;
+
+            string ToCamelSimple(string candidate)
+            {
+                if (string.IsNullOrEmpty(text))
+                    return string.Empty;
+                if (Char.IsLower(candidate[0]))
+                    return candidate;
+                return $"{Char.ToLower(candidate[0])}{candidate[1..]}";
+            }
+
+            string ToPascalSimple(string candidate)
+            {
+                if (string.IsNullOrEmpty(text))
+                    return string.Empty;
+                if (Char.IsUpper(candidate[0]))
+                    return candidate;
+                return $"{Char.ToUpper(candidate[0])}{candidate[1..]}";
+            }
         }
 
         #endregion // ToCamelCase
@@ -31,13 +58,27 @@
         /// <returns></returns>
         public static string ToPascalCase(this string text)
         {
-            // TODO: use slice to minimize allocation
-
             if (string.IsNullOrEmpty(text))
                 return string.Empty;
 
 
-            return $"{Char.ToUpper(text[0])}{text[1..]}";
+            string[] parts = IGNORED.Split(text);
+            if (parts.Length == 1)
+            {
+                return ToPascalSimple(text);
+            }
+
+            return string.Join("", parts.Select(m => ToPascalSimple(m)));
+
+            string ToPascalSimple(string candidate)
+            {
+                if (string.IsNullOrEmpty(text))
+                    return string.Empty;
+                if (Char.IsUpper(candidate[0]))
+                    return candidate;
+                return $"{Char.ToUpper(candidate[0])}{candidate[1..]}";
+            }
+
         }
 
         #endregion // ToPascalCase
@@ -52,8 +93,6 @@
         /// <returns></returns>
         public static string ToSCREAMING(this string text, char separator = '_')
         {
-            // TODO: use slice to minimize allocation
-
             if (string.IsNullOrEmpty(text))
                 return string.Empty;
 
@@ -113,8 +152,6 @@
         /// <returns></returns>
         public static string ToDash(this string text, char separator = '-')
         {
-            // TODO: use slice to minimize allocation
-
             if (string.IsNullOrEmpty(text))
                 return string.Empty;
 
