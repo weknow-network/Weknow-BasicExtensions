@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Text;
+using System.Text.RegularExpressions;
 
 namespace System
 {
@@ -96,8 +97,8 @@ namespace System
             if (string.IsNullOrEmpty(text))
                 return string.Empty;
 
-            (string Result, char Last) aggregate = text.Trim().Aggregate(
-               (Result: "", Last: char.MinValue),
+            (StringBuilder Result, char Last) aggregate = text.Trim().Aggregate(
+               (Result: new StringBuilder(text.Length), Last: char.MinValue),
                (acc, current) =>
                {
                    char CURRENT = char.ToUpper(current);
@@ -106,7 +107,7 @@ namespace System
                    if (isCurWS && result.Length != 0)
                    {
                        if (char.IsLetter(last) || char.IsDigit(last))
-                           return ($"{result}{separator}", separator);
+                           return (result.Append(separator), separator);
                        else
                            return (result, last);
                    }
@@ -115,29 +116,22 @@ namespace System
                        if (isCurWS)
                            return (result, char.MinValue);
                        else
-                           return ($"{result}{CURRENT}", current);
+                           return (result.Append(CURRENT), current);
                    }
 
                    if (current == separator || last == separator)
                    {
                        if (current == last)
                            return (result, current);
-                       return ($"{result}{CURRENT}", current);
+                       return (result.Append(CURRENT), current);
                    }
                    if ((char.IsLower(last) || !char.IsLetter(last)) && char.IsUpper(current))
-                       return ($"{result}{separator}{CURRENT}", current);
-                   return ($"{result}{CURRENT}", current);
+                       return (result.Append(separator).Append(CURRENT), current);
+                   return (result.Append(CURRENT), current);
                });
 
-            //(string Result, char Last) aggregate = text.Aggregate(
-            //    (Result: "", Last: char.MinValue),
-            //    (acc, current) => (result: acc.Result, last: acc.Last, current) switch {
-            //        ("", _, _) => (current.ToString().ToUpper(), current),
-            //        var (r, l, c) when char.IsLower(l) && char.IsUpper(c) => ($"{r}{separator}{c}".ToUpper(), current),
-            //        var (r, _, c) => ($"{r}{current}".ToUpper(), c)
-            //    });
 
-            return aggregate.Result;
+            return aggregate.Result.ToString();
         }
 
         #endregion // ToSCREAMING
@@ -155,11 +149,11 @@ namespace System
             if (string.IsNullOrEmpty(text))
                 return string.Empty;
 
-            (string Result, char Last) aggregate = text.Trim().Aggregate(
-               (Result: "", Last: char.MinValue),
+            (StringBuilder Result, char Last) aggregate = text.Aggregate(
+               (Result: new StringBuilder(text.Length), Last: char.MinValue),
                (acc, current) =>
                {
-                   char CURRENT = char.ToLower(current);
+                   char lowerCurrent = char.ToLower(current);
                    var (result, last) = acc;
                    bool ignore = !char.IsDigit(current) && !char.IsLetter(current) || current == '_';
                    if (ignore && result.Length != 0)
@@ -171,7 +165,7 @@ namespace System
                        if (ignore)
                            return (result, char.MinValue);
                        else
-                           return ($"{result}{CURRENT}", current);
+                           return (result.Append(lowerCurrent), current);
                    }
 
                    if (current == separator || last == separator)
@@ -179,15 +173,15 @@ namespace System
                        if (current == last)
                            return (result, current);
                        else if (last == separator)
-                           return ($"{result}{separator}{CURRENT}", current);
+                           return (result.Append(separator).Append(lowerCurrent), current);
                    }
                    if (char.IsUpper(current) && !char.IsUpper(last))
-                       return ($"{result}{separator}{CURRENT}", current);
-                   return ($"{result}{CURRENT}", current);
+                       return (result.Append(separator).Append(lowerCurrent), current);
+                   return (result.Append(lowerCurrent), current);
                });
 
 
-            return aggregate.Result;
+            return aggregate.Result.ToString();
         }
 
         #endregion // ToDash
