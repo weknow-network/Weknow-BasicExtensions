@@ -1,6 +1,6 @@
 <Project>
 	<PropertyGroup>
-		<Version>1.0.33</Version>
+		<Version>1.0.34</Version>
 		<TargetFramework>netstandard2.1</TargetFramework>
 		<LangVersion>10.0</LangVersion>
 		<ImplicitUsings>enable</ImplicitUsings>
