@@ -89,6 +89,8 @@ namespace Weknow_BasicExtensions_Tests
         [InlineData("Bnaya_eshet", "BnayaEshet")]
         [InlineData("bnaya_eshet", "BnayaEshet")]
         [InlineData("b1n2aya_eshet", "B1n2ayaEshet")]
+        [InlineData("KNOW", "Know")]
+        [InlineData("KNOW_ME", "KnowMe")]
         [InlineData("", "")]
         [InlineData(null, "")]
         public void String_ToPascalCase_Test_Succeed(string input, string expected)
@@ -110,6 +112,8 @@ namespace Weknow_BasicExtensions_Tests
         [InlineData("bnaya_Eshet", "bnayaEshet")]
         [InlineData("bnaya_eshet", "bnayaEshet")]
         [InlineData("b1n2aya Eshet", "b1n2ayaEshet")]
+        [InlineData("KNOW", "know")]
+        [InlineData("KNOW_ME", "knowMe")]
         [InlineData("", "")]
         [InlineData(null, "")]
         public void String_ToCamelCase_Test_Succeed(string input, string expected)

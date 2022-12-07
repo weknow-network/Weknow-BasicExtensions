@@ -1,11 +1,20 @@
 ﻿using System.Text;
 using System.Text.RegularExpressions;
 
+using static System.Net.Mime.MediaTypeNames;
+
 namespace System
 {
     public static class StringExtensions
     {
         private static readonly Regex IGNORED = new Regex("[^a-zA-Z0-9]");
+        private static readonly Regex UPPER_START = new Regex("^[A-Z]*");
+        private static readonly Regex LOWER_START = new Regex("^[a-z]*");
+        // credit: https://stackoverflow.com/a/4489046/6127368
+        private static readonly Regex SPLIT_UPPER = new Regex(@"(?<=[A-Z])(?=[A-Z][a-z]) |
+(?<=[^A-Z])(?=[A-Z]) |
+(?<=[A-Za-z])(?=[^A-Za-z])", RegexOptions.IgnorePatternWhitespace);
+
 
         #region ToCamelCase
 
@@ -28,24 +37,6 @@ namespace System
 
             string result = string.Join("", parts.Select((m, i) => i == 0 ? ToCamelSimple(m) : ToPascalSimple(m)));
             return result;
-
-            string ToCamelSimple(string candidate)
-            {
-                if (string.IsNullOrEmpty(text))
-                    return string.Empty;
-                if (Char.IsLower(candidate[0]))
-                    return candidate;
-                return $"{Char.ToLower(candidate[0])}{candidate[1..]}";
-            }
-
-            string ToPascalSimple(string candidate)
-            {
-                if (string.IsNullOrEmpty(text))
-                    return string.Empty;
-                if (Char.IsUpper(candidate[0]))
-                    return candidate;
-                return $"{Char.ToUpper(candidate[0])}{candidate[1..]}";
-            }
         }
 
         #endregion // ToCamelCase
@@ -70,16 +61,6 @@ namespace System
             }
 
             return string.Join("", parts.Select(m => ToPascalSimple(m)));
-
-            string ToPascalSimple(string candidate)
-            {
-                if (string.IsNullOrEmpty(text))
-                    return string.Empty;
-                if (Char.IsUpper(candidate[0]))
-                    return candidate;
-                return $"{Char.ToUpper(candidate[0])}{candidate[1..]}";
-            }
-
         }
 
         #endregion // ToPascalCase
@@ -185,5 +166,58 @@ namespace System
         }
 
         #endregion // ToDash
+
+        #region ToCamelSimple
+
+        private static string ToCamelSimple(string candidate)
+        {
+            if (string.IsNullOrEmpty(candidate))
+                return string.Empty;
+
+            int len = UPPER_START.Match(candidate).Length;
+            if (len == 0)
+                return candidate;
+
+            var start = candidate[..len].ToLower();
+            return $"{start}{candidate[len..]}";
+        }
+
+        #endregion // ToCamelSimple
+
+        #region ToPascalSimple
+
+        private static string ToPascalSimple(string candidate)
+        {
+            if (string.IsNullOrEmpty(candidate))
+                return string.Empty;
+
+            string[] parts = SPLIT_UPPER.Split(candidate);
+            if (parts.Length > 1)
+            {
+                var ps = parts.Select(p => ToPascalSimple(p));
+                return string.Join("", ps);
+            }
+
+            int len = LOWER_START.Match(candidate).Length;
+            if (len == 0)
+            {
+                int lenUp = UPPER_START.Match(candidate).Length;
+                if (lenUp <= 1)
+                    return candidate;
+
+                var fst = Char.ToUpper(candidate[0]);
+                var rst = candidate[1..].ToLower();
+                return $"{fst}{rst}";
+            }
+
+            var first = Char.ToUpper(candidate[0]);
+            var rest = candidate[1..].ToLower();
+            //var start = candidate[1..len].ToLower();
+            //var rest = candidate[len..].ToLower();
+            //return $"{first}{start}{candidate[len..]}";
+            return $"{first}{rest}";
+        }
+
+        #endregion // ToPascalSimple
     }
 }
