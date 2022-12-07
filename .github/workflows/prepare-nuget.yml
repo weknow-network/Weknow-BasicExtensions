@@ -20,6 +20,6 @@ on:
 jobs:
 
   version_increment:
-    uses: weknow-network/weknow-workflows/.github/workflows/dotnet-increment-version.yml@main
+    uses: weknow-network/weknow-workflows/.github/workflows/dotnet-increment-version.yml@release/2022-11-15/net7
       
  
