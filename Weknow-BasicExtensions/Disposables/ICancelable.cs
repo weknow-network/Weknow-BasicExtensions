@@ -3,16 +3,26 @@
 // The .NET Foundation licenses this file to you under the MIT License.
 // See the LICENSE file in the project root for more information. 
 
-namespace Weknow.Disposables
+namespace Weknow.Disposables;
+
+/// <summary>
+/// Disposable resource with disposal state tracking.
+/// </summary>
+public interface ICancelable : IDisposable
 {
     /// <summary>
-    /// Disposable resource with disposal state tracking.
+    /// Gets a value that indicates whether the object is disposed.
     /// </summary>
-    public interface ICancelable : IDisposable
-    {
-        /// <summary>
-        /// Gets a value that indicates whether the object is disposed.
-        /// </summary>
-        bool IsDisposed { get; }
-    }
+    bool IsDisposed { get; }
+}
+
+/// <summary>
+/// Disposable resource with disposal state tracking.
+/// </summary>
+public interface ICancelable<TState> : ICancelable
+{
+    /// <summary>
+    /// Gets or Set the state.
+    /// </summary>
+    TState State { get; set; }
 }

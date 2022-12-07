@@ -3,6 +3,8 @@
 // The .NET Foundation licenses this file to you under the MIT License.
 // See the LICENSE file in the project root for more information. 
 
+using System.Net.NetworkInformation;
+
 namespace Weknow.Disposables
 {
     /// <summary>
@@ -68,8 +70,6 @@ namespace Weknow.Disposables
             return new AnonymousDisposable(dispose, useFinalizerTrigger);
         }
 
-        #endregion // Create
-
         /// <summary>
         /// Creates a disposable object that invokes the specified action when disposed.
         /// </summary>
@@ -82,14 +82,31 @@ namespace Weknow.Disposables
         /// </returns>
         /// <exception cref="System.ArgumentNullException">dispose</exception>
         /// <exception cref="ArgumentNullException"><paramref name="dispose" /> is <c>null</c>.</exception>
-        public static IStateCancelable<TState> Create<TState>(TState state, Action<TState>? dispose, bool useFinalizerTrigger = false)
+        public static ICancelable<TState> Create<TState>(TState state, Action<TState>? dispose = null, bool useFinalizerTrigger = false)
         {
-            if (dispose == null)
-            {
-                throw new ArgumentNullException(nameof(dispose));
-            }
+            Action<TState> cleanup = dispose ?? ((_) => { });
 
-            return new AnonymousDisposable<TState>(state, dispose, useFinalizerTrigger);
+            return new AnonymousDisposable<TState>(state, cleanup, useFinalizerTrigger);
+        }
+
+        #endregion // Create
+
+        /// <summary>
+        /// Creates a disposable object that invokes the specified action when disposed.
+        /// </summary>
+        /// <typeparam name="TState">The type of the state.</typeparam>
+        /// <param name="state">The state to be passed to the action.</param>
+        /// <param name="dispose">Action to run during the first call to <see cref="IDisposable.Dispose" />. The action is guaranteed to be run at most once.</param>
+        /// <returns>
+        /// The disposable object that runs the given action upon disposal.
+        /// </returns>
+        /// <exception cref="System.ArgumentNullException">dispose</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="dispose" /> is <c>null</c>.</exception>
+        public static IStackCancelable<TState> CreateStack<TState>(TState state, Action<TState>? dispose = null)
+        {
+            Action<TState> cleanup = dispose ?? ((_) => { });
+
+            return new StackDisposable<TState>(state, cleanup);
         }
     }
 }

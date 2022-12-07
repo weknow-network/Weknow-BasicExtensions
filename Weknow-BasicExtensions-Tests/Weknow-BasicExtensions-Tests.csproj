@@ -1,7 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
     <RootNamespace>Weknow_BasicExtensions_Tests</RootNamespace>
 
     <IsPackable>false</IsPackable>
