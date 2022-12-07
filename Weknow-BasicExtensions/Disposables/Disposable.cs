@@ -10,6 +10,8 @@ namespace Weknow.Disposables
     /// </summary>
     public static partial class Disposable
     {
+        #region EmptyDisposable
+
         /// <summary>
         /// Represents a disposable that does nothing on disposal.
         /// </summary>
@@ -33,10 +35,18 @@ namespace Weknow.Disposables
             }
         }
 
+        #endregion // EmptyDisposable
+
+        #region Empty
+
         /// <summary>
         /// Gets the disposable that does nothing when disposed.
         /// </summary>
         public static IDisposable Empty => EmptyDisposable.Instance;
+
+        #endregion // Empty
+
+        #region Create
 
         /// <summary>
         /// Creates a disposable object that invokes the specified action when disposed.
@@ -48,7 +58,7 @@ namespace Weknow.Disposables
         /// </returns>
         /// <exception cref="System.ArgumentNullException">dispose</exception>
         /// <exception cref="ArgumentNullException"><paramref name="dispose" /> is <c>null</c>.</exception>
-        public static IDisposable Create(Action dispose, bool useFinalizerTrigger = false)
+        public static ICancelable Create(Action dispose, bool useFinalizerTrigger = false)
         {
             if (dispose == null)
             {
@@ -57,6 +67,8 @@ namespace Weknow.Disposables
 
             return new AnonymousDisposable(dispose, useFinalizerTrigger);
         }
+
+        #endregion // Create
 
         /// <summary>
         /// Creates a disposable object that invokes the specified action when disposed.
@@ -70,7 +82,7 @@ namespace Weknow.Disposables
         /// </returns>
         /// <exception cref="System.ArgumentNullException">dispose</exception>
         /// <exception cref="ArgumentNullException"><paramref name="dispose" /> is <c>null</c>.</exception>
-        public static IDisposable Create<TState>(TState state, Action<TState> dispose, bool useFinalizerTrigger = false)
+        public static IStateCancelable<TState> Create<TState>(TState state, Action<TState>? dispose, bool useFinalizerTrigger = false)
         {
             if (dispose == null)
             {

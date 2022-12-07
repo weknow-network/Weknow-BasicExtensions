@@ -44,10 +44,12 @@ namespace Weknow.Disposables
     /// <summary>
     /// Represents a Action-based disposable that can hold onto some state.
     /// </summary>
-    internal sealed class AnonymousDisposable<TState> : ICancelable
+    internal sealed class AnonymousDisposable<TState> : IStateCancelable<TState>
     {
-        private TState _state;
+        public TState State { get; set; }
         private volatile Action<TState>? _dispose;
+
+        #region Ctor
 
         /// <summary>
         /// Constructs a new disposable with the given action used for disposal.
@@ -55,18 +57,31 @@ namespace Weknow.Disposables
         /// <param name="state">The state to be passed to the disposal action.</param>
         /// <param name="dispose">Disposal action which will be run upon calling Dispose.</param>
         /// <param name="useFinalizerTrigger">if set to <c>true</c> [use finalizer trigger].</param>
-        public AnonymousDisposable(TState state, Action<TState> dispose, bool useFinalizerTrigger = false)
+        public AnonymousDisposable(TState state, Action<TState>? dispose, bool useFinalizerTrigger = false)
         {
             if (!useFinalizerTrigger)
                 GC.SuppressFinalize(this);
-            _state = state;
+            State = state;
             _dispose = dispose;
         }
+
+        #endregion // Ctor
+
+        #region IsDisposed
 
         /// <summary>
         /// Gets a value that indicates whether the object is disposed.
         /// </summary>
         public bool IsDisposed => _dispose == null;
+
+        #endregion // IsDisposed
+
+        #region Dispose Pattern
+
+        /// <summary>
+        /// Finalizes an instance of the <see cref="AnonymousDisposable{TState}"/> class.
+        /// </summary>
+        ~AnonymousDisposable() => Dispose();
 
         /// <summary>
         /// Calls the disposal action if and only if the current instance hasn't been disposed yet.
@@ -74,8 +89,10 @@ namespace Weknow.Disposables
         public void Dispose()
         {
             GC.SuppressFinalize(this);
-            Interlocked.Exchange(ref _dispose, null)?.Invoke(_state);
-            _state = default!;
+            Interlocked.Exchange(ref _dispose, null)?.Invoke(State);
+            State = default!;
         }
+
+        #endregion // Dispose Pattern
     }
 }
